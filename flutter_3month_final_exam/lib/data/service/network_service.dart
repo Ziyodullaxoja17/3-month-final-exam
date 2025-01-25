@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class NetworkServiceCustom {
-  // Sign in using email and password to retrieve a token
+  // Sign in  bu yerda biz token ni "token" deb nomlangan sharef prefga saqlab olamiz;
   Future<Map<String, dynamic>> signIn({
     required String password,
     required String email,
@@ -20,7 +20,7 @@ class NetworkServiceCustom {
         headers: {"Content-Type": "application/json"},
         body: jsonEncode({
           "phone_number":
-              email, // Consider dynamic values instead of placeholders
+              email, // bu yerda biz emali yoki raqam kiritsak ham bo'ladi , uni dimaik ko'rinishga almashriramiz
           "email": email,
           "auth_method": "email",
           "password": password,
@@ -39,7 +39,7 @@ class NetworkServiceCustom {
     }
   }
 
-  // Sign up with new account details to get a token
+  // Sign up bu yerda iz sign up qilgaminimizda olinga tokenni saqlab qo'yamiz
   Future<Map<String, dynamic>> signUp({
     required String password,
     required String email,
@@ -51,8 +51,7 @@ class NetworkServiceCustom {
         url,
         headers: {"Content-Type": "application/json"},
         body: jsonEncode({
-          "phone_number":
-              email, // Consider dynamic values instead of placeholders
+          "phone_number": email, // email ni raqam o'rniga ham bersak bo'ladi
           "email": email,
           "auth_method": "email",
           "password": password,
@@ -71,7 +70,7 @@ class NetworkServiceCustom {
     }
   }
 
-  // Fetch furniture data using the stored token
+  // biz qo'limidagi token orqali ma'lumolarni olamiz ma'lumot mapda , key => ["data"] list qilin qaytarib yuborayapmiz
   Future<List<dynamic>?> getFurnitures() async {
     final url = Uri.parse("https://e-commerce.birnima.uz/api/products");
     final SharedPreferences pref = await SharedPreferences.getInstance();

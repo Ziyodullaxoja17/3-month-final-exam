@@ -14,7 +14,7 @@ class ProductScreen1 extends StatefulWidget {
 class _ProductScreen1State extends State<ProductScreen1> {
   final PageController pageController = PageController();
 
-  int? _currentIndex;
+  int currentIndex = 0;
   List<dynamic> items = [1, 2, 3];
   TextEditingController textEditingController = TextEditingController();
 
@@ -58,7 +58,9 @@ class _ProductScreen1State extends State<ProductScreen1> {
                     child: PageView(
                       controller: pageController,
                       onPageChanged: (value) {
-                        _currentIndex = value;
+                        setState(() {
+                          currentIndex = value;
+                        });
                       },
                       children: [
                         // sized box 1
